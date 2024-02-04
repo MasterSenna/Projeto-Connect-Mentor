@@ -110,6 +110,8 @@ body {
   transition: 0.5s;
 }
 
+
+
 .card-avatar {
   width: 100px;
   height: 100px;
@@ -372,3 +374,12 @@ body {
   font-family: 'Jost', sans-serif;
   transition: 0.3s;
 }
+
+
+.request-avatar {
+    width: 50px; /* Ajuste o tamanho conforme necessário */
+    height: auto; /* Mantenha a proporção da imagem */
+    border-radius: 50%; /* Adicione um raio de borda para tornar a imagem redonda, se desejar */
+}
+
+

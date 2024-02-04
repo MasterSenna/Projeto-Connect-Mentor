@@ -31,6 +31,10 @@
                 <button id="signin" class="btn btn-primary">Mudar para Aluno</button>
             </div>    
             <div class="second-column">
+               
+               
+               
+               
                 <h2 class="title title-second">Mentor</h2>
                 <div class="social-media">
                     <ul class="list-social-media">
@@ -51,24 +55,31 @@
                         </a>
                     </ul>
                 </div><!-- social media -->
+              
+             
+             
+             
+              <!--Formulário para validar mentor-->
+                
                 <p class="description description-second">Insira os seus dados de login</p>
-                <form class="form" action="perfilMentor1">
+                <form class="form" action="/logarMentor" method="get">
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="Email" required>
+                        <input type="email" placeholder="email" name="email" id="email" required>
                     </label>
                     
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" placeholder="Senha" required>
+                        <input type="password" placeholder="senha" name="senha" id="senha" required>
                     </label>
-                    
-                    
-                    <a href="perfilMentor1" style="text-decoration: none; text-align: center;"> <button class="btn btn-second" >Entrar</button>
-                </a>       
+                     
+                     <button class="btn btn-second" type="submit" >Entrar</button>  
                 </form>
             </div><!-- second column -->
         </div><!-- first content -->
+        
+       
+        
         <div class="content second-content">
             <div class="first-column">
                 <h2 class="title title-primary">Bem vindo Mentorado!</h2>
@@ -76,6 +87,9 @@
                 <p class="description description-primary"><br>*Para logar como mentor clique no botão abaixo.</p>
                 <button id="signup" class="btn btn-primary">Mudar para Mentor</button>
             </div>
+          
+          
+          
             <div class="second-column">
                 <h2 class="title title-second">Mentorado</h2>
                 <div class="social-media">
@@ -85,6 +99,8 @@
                                 <i class="fab fa-facebook-f"></i>
                             </li>
                         </a>
+                       
+                       
                         <a class="link-social-media" href="#">
                             <li class="item-social-media">
                                 <i class="fab fa-google-plus-g"></i>
@@ -97,25 +113,30 @@
                         </a>
                     </ul>
                 </div><!-- social media -->
+               
+               
+               
                 <p class="description description-second">Insira os seus dados de login</p>
-                <form class="form" action="mentorado/perfilMentorado">
                 
+                <form class="form" action="/logarMentorado" method="get">
                     <label class="label-input" for="">
                         <i class="far fa-envelope icon-modify"></i>
-                        <input type="email" placeholder="Email" required> 
+                        <input type="email" placeholder="email" name="email" id="email" required> 
                     </label>
                 
                     <label class="label-input" for="">
                         <i class="fas fa-lock icon-modify"></i>
-                        <input type="password" placeholder="Senha" required>
+                        <input type="password" placeholder="senha" name="senha" id="senha" required>
                     </label>
-                
-                    
-                    <a href="mentorado/perfilMentorado" style="text-decoration: none; text-align: center;"> <button class="btn btn-second" >Entrar</button>
+                    <button class="btn btn-second" type="submit" >Entrar</button>
                 </form>
+            
             </div><!-- second column -->
         </div><!-- second-content -->
     </div>
+   
+   
+   
     <script src="app.js"></script>
 </body>
 

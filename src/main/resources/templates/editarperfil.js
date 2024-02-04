@@ -8,7 +8,7 @@ function togglePretensions() {
 /* Botão Voltar */
 
 function redirectToAnotherPage() {
-    window.location.href = "mentorado/perfilMentorado";
+    window.location.href = "/perfilMentorado/{idMentorado}";
 }
 
 /* Editar Informações */
@@ -99,14 +99,14 @@ function saveAndRedirect() {
     document.querySelector('.place').textContent = updatedPlace;
 
     // Construindo a URL com os parâmetros atualizados
-    const redirectURL = `mentorado/perfilMentorado?fullName=${encodeURIComponent(updatedFullName)}&role=${encodeURIComponent(updatedRole)}&place=${encodeURIComponent(updatedPlace)}`;
+    const redirectURL = `/perfilMentorado?fullName=${encodeURIComponent(updatedFullName)}&role=${encodeURIComponent(updatedRole)}&place=${encodeURIComponent(updatedPlace)}`;
 
     // Armazenar os dados na sessionStorage para acessá-los no perfilmentorado.html
     sessionStorage.setItem('redirectURL', redirectURL);
     sessionStorage.setItem('imageBase64', imageBase64);
 
     // Redirecionar para o perfilmentorado.html
-    window.location.href = 'mentorado/perfilMentorado';
+    window.location.href = 'perfilMentorado/{idMentorado}';
 }
 
 // Carregar informações do localStorage ao carregar a página

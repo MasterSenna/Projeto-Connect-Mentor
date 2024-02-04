@@ -1,11 +1,13 @@
 package com.connectmentor.aplicacao.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +21,7 @@ import com.connectmentor.aplicacao.service.MentoradoService;
 import com.connectmentor.aplicacao.service.PretensaoService;
 
 @Controller
-@RequestMapping("/mentorado")
+@RequestMapping("/")
 public class MentoradoController {
 
 	// Injeção de depedências;
@@ -42,8 +44,17 @@ public class MentoradoController {
 		return mv;
 	}
 	
+	
+	@GetMapping("perfilmentorado")
+	public ModelAndView perfillmentorado() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("perfilmentorado");
+		return mv;
+	}
+	
+	
 	//Setando view no endpoint cadastro;
-	@GetMapping("CadastroMentorado")
+	@GetMapping("mentorado/CadastroMentorado")
 	public ModelAndView cadastro() {
 		ModelAndView mv = new ModelAndView();
 			mv.setViewName("CadastroMentorado");
@@ -70,32 +81,31 @@ public class MentoradoController {
 	
 	
 	// Setando view no endpoint perfil mentorado;
-	@GetMapping("perfilMentorado")
-	public ModelAndView perfilMentorado() {
+	@GetMapping("perfilMentorado/{idMentorado}")
+	public ModelAndView perfilMentorado(@PathVariable Integer idMentorado) {
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("perfilmentorado");
 		return mv;
 	}
 	
-	@GetMapping("editarperfil")
-	public ModelAndView editarperfil() {
-
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("editarperfil");
-		return mv;
+	
+	@GetMapping("editarperfil/{idMentorado}")
+	public ModelAndView editarperfil(@PathVariable Integer idMentorado) {
+	    ModelAndView mv = new ModelAndView();
+	    mv.setViewName("editarperfil");
+	    mv.addObject("idMentorado", idMentorado); // Adicione o idMentorado ao ModelAndView
+	    return mv;
 	}
 
 	@PostMapping("/inserirMentorados")
-    public String salvarMentorado(@ModelAttribute Mentorado mentorado) {
-	 mentoradoService.salvarMentorado(mentorado);
-	 /*
-	 String hashsenha = PasswordUtil.encoder(mentor.getSenha());
-	 mentor.setSenha(hashsenha);
-	 */
-        return "sucesso";
-    }
-	
+	public String salvarMentorado(@ModelAttribute Mentorado mentorado) {
+	    mentoradoService.salvarMentorado(mentorado);
+	    // Obtenha o ID do mentorado após salvar (suponha que seja 1 neste exemplo)
+	    Integer idMentorado = 1;
+	    return "redirect:/editarperfil/" + idMentorado;
+	}
+
 	// Inserindo pretensões do mentorado;
 	@PostMapping("/inserirPretensoes")
 	public String salvarPretensoes(@RequestParam Long idMentorado, @RequestParam("idPretensao") List<Long> idPretensao) {
@@ -134,6 +144,23 @@ public class MentoradoController {
 		return ResponseEntity.ok().body(list);
 		}
 	
+	//Método para logar o mentorado
+	@GetMapping("/logarMentorado")
+	public String logar(@RequestParam("email") String email, @RequestParam("senha") String senha) {
+	    Mentorado mentorado = mentoradoService.buscarPorEmail(email);
+
+	    if (mentorado != null) {
+	        if (mentorado.getSenha() != null && mentorado.getSenha().equals(senha)) {
+	            return "redirect:/perfilMentorado/" + mentorado.getId();
+	        } else {
+	            return "redirect:/index";
+	        }
+	    } else {
+	        // Lógica para lidar com mentorado não encontrado, se necessário
+	        return "redirect:/index";
+	    }
+	}
+
 	
 	
 }
